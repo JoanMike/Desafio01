@@ -1,11 +1,24 @@
 const textArea = document.querySelector(".text-area");
 const mensaje = document.querySelector(".mensaje");
 
+function validarTexto(){
+    let textoEscrito = document.querySelector(".text-area").value;
+    let validador = textoEscrito.match(/^[a-z]*$/);
+
+    if(!validador || validador === 0) {
+        alert("Solo son permitidas letras minúsculas y sin acentos")
+        location.reload();
+        return true;
+    }
+}
+
 function btnEncriptar(){
-    const textoEncriptado = encriptar(textArea.value)
-    mensaje.value = textoEncriptado
-    textArea.value = "";
-    mensaje.style.backgroundImage = "none"
+    if(!validarTexto()){
+        const textoEncriptado = encriptar(textArea.value)
+        mensaje.value = textoEncriptado
+        textArea.value = "";
+        mensaje.style.backgroundImage = "none"
+    }
 }
 
 function encriptar(stringEncriptada){
